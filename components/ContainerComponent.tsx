@@ -1,6 +1,8 @@
 import styles from "@/styles/Home.module.css";
 import styled from "styled-components";
 
+import { FaGithub } from "react-icons/fa";
+
 export default function ContainerComponent() {
   return (
     <Container>
@@ -12,7 +14,10 @@ export default function ContainerComponent() {
           This is a technical test solution made by Favio Pariente in order to
           search repositores and users from:
         </div>
-        <div>GH</div>
+        <div className="gitHub">
+          <FaGithub />
+          GitHub
+        </div>
       </div>
     </Container>
   );
@@ -27,7 +32,7 @@ const Container = styled.div`
   width: 100%;
   padding-bottom: 25vh;
   .title {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
   .title h1 {
     color: var(--cian);
@@ -40,7 +45,18 @@ const Container = styled.div`
     align-items: center;
     color: var(--silver);
     font-size: 2rem;
-    width: 50%;
+    width: 60%;
     text-align: center;
+
+    .gitHub {
+      flex-direction: column;
+      font-size: 1rem;
+      margin: 2rem;
+      svg {
+        color: var(--lightWhite);
+        height: 4rem;
+        width: 5rem;
+      }
+    }
   }
 `;
