@@ -47,7 +47,7 @@ const Section = styled.div`
   }
   .title h1 {
     color: var(--cian);
-    font-size: 5rem;
+    font-size: 6rem;
     position: relative;
   }
   .content {
@@ -72,13 +72,13 @@ const Section = styled.div`
   }
   .buttons-row {
     display: flex;
-    gap: 4rem;
+    gap: 6rem;
     flex-direction: row;
     margin-top: 10vh;
     .element {
       button {
-        padding: 0.8rem 1.2rem;
-        font-size: 1rem;
+        padding: 1rem 1.4rem;
+        font-size: 1.3rem;
         background-color: transparent;
         color: var(--lightWhite);
         border-radius: 0.4rem;
