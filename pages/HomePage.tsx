@@ -40,9 +40,8 @@ const Section = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  height: 70vh;
   width: 100%;
-  padding-bottom: 5vh;
   .title {
     margin-bottom: 0.8rem;
   }
