@@ -1,10 +1,9 @@
 import NavBar from "@/components/NavBar";
 import styled from "styled-components";
-import { Aclonica } from "@next/font/google";
 import { Andada_Pro } from "@next/font/google";
 import { motion } from "framer-motion";
+import SearchBar from "@/components/SearchBar";
 
-const aclonica = Aclonica({ weight: "400", subsets: ["latin"] });
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
 
 export default function FindReposPage() {
@@ -13,25 +12,25 @@ export default function FindReposPage() {
       <NavBar />
       <Section>
         <div className="title">
-          <motion.h1
-            className={aclonica.className}
-            whileHover={{ scale: 1.1 }}
-            variants={{
-              animation: {
-                y: [0, -15],
-                transition: {
-                  yoyo: Infinity,
-                  duration: 2,
-                  delay: 1,
-                },
-              },
-            }}
-            initial="initial"
-            animate="animation"
-          >
-            FIND REPOS
-          </motion.h1>
+          <h1 className={andadaPro.className}>FIND REPOS</h1>
         </div>
+        <motion.h1
+          whileHover={{ scale: 1.1 }}
+          variants={{
+            animation: {
+              y: [0, -15],
+              transition: {
+                yoyo: Infinity,
+                duration: 2,
+                delay: 1,
+              },
+            },
+          }}
+          initial="initial"
+          animate="animation"
+        >
+          <SearchBar />
+        </motion.h1>
       </Section>
     </>
   );
@@ -45,12 +44,12 @@ const Section = styled.div`
   height: 70vh;
   width: 100%;
   .title {
-    margin-bottom: 0.8rem;
+    margin-bottom: 2rem;
     user-select: none;
   }
   .title h1 {
-    color: var(--cian);
-    font-size: 6rem;
+    color: var(--lightWhite);
+    font-size: 4rem;
     position: relative;
   }
 
