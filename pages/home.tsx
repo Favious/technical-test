@@ -1,57 +1,60 @@
+import NavBar from "@/components/NavBar";
 import styled from "styled-components";
 import { FaGithub } from "react-icons/fa";
+import { Aclonica } from "@next/font/google";
+import { Andada_Pro } from "@next/font/google";
 import { motion } from "framer-motion";
 
-export default function HomePage({
-  aclonica,
-  andadaPro,
-}: {
-  aclonica: any;
-  andadaPro: any;
-}) {
+const aclonica = Aclonica({ weight: "400", subsets: ["latin"] });
+const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
+
+export default function HomePage() {
   return (
-    <Section>
-      <div className="title">
-        <motion.h1
-          className={aclonica.className}
-          whileHover={{ scale: 1.1 }}
-          variants={{
-            animation: {
-              y: [0, -15],
-              transition: {
-                yoyo: Infinity,
-                duration: 2,
-                delay: 1,
+    <>
+      <NavBar />
+      <Section>
+        <div className="title">
+          <motion.h1
+            className={aclonica.className}
+            whileHover={{ scale: 1.1 }}
+            variants={{
+              animation: {
+                y: [0, -15],
+                transition: {
+                  yoyo: Infinity,
+                  duration: 2,
+                  delay: 1,
+                },
               },
-            },
-          }}
-          initial="initial"
-          animate="animation"
-        >
-          HELLO
-        </motion.h1>
-      </div>
-      <div className="content">
-        <div className={andadaPro.className}>
-          This is a technical test solution made by Favio Pariente in order to
-          search repositores and users from:
+            }}
+            initial="initial"
+            animate="animation"
+          >
+            HELLO
+          </motion.h1>
         </div>
-        <div className="gitHub">
-          <div className="logo">
-            <FaGithub />
+        <div className="content">
+          <div className={andadaPro.className}>
+            This is a technical test solution made by Favio Pariente in order to
+            search repositores and users from:
           </div>
-          <span className="text">GitHub</span>
+          <div className="gitHub">
+            <div className="logo">
+              <FaGithub />
+            </div>
+            <span className="text">GitHub</span>
+          </div>
         </div>
-      </div>
-      <div className="buttons-row">
-        <div className="element">
-          <button className={andadaPro.className}>FIND USERS</button>
+        <div className="buttons-row">
+          <div className="element">
+            <button className={andadaPro.className}>FIND USERS</button>
+          </div>
+          <div className="element">
+            <button className={andadaPro.className}>FIND REPOS</button>
+          </div>
         </div>
-        <div className="element">
-          <button className={andadaPro.className}>FIND REPOS</button>
-        </div>
-      </div>
-    </Section>
+      </Section>
+    </>
   );
 }
 

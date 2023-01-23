@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Aclonica } from "@next/font/google";
 import { Andada_Pro } from "@next/font/google";
 import { BiToggleLeft, BiToggleRight, BiMenu, BiX } from "react-icons/bi";
 import { IoMdMoon, IoIosSunny } from "react-icons/io";
-import { AnimatePresence, motion } from "framer-motion";
-
-const aclonica = Aclonica({ weight: "400", subsets: ["latin"] });
-const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 const routes = [
-  { name: "HOME", route: "" },
-  { name: "FIND USERS", route: "" },
-  { name: "FIND REPOS", route: "" },
+  { name: "HOME", route: "/" },
+  { name: "FIND USERS", route: "/find_users" },
+  { name: "FIND REPOS", route: "/find_repos" },
 ];
+
+const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
 
 const menuVariants = {
   open: {
@@ -36,18 +35,18 @@ const menuVariants = {
   },
 };
 
-export default function ContainerComponent({ children }: { children: any }) {
+export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Container>
+    <Navbar>
       <div className="navbar">
         <div className="mode-toggle">
           <div className="off">
             <IoIosSunny />
           </div>
           <div className="toggle">
-            <BiToggleRight onClick={() => setIsMenuOpen(!isMenuOpen)} />
+            <BiToggleRight />
           </div>
           <div className="on">
             <IoMdMoon />
@@ -67,17 +66,16 @@ export default function ContainerComponent({ children }: { children: any }) {
           <BiX onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
         {routes.map((route) => (
-          <a href="#" className={andadaPro.className}>
+          <Link href={route.route} className={andadaPro.className}>
             {route.name}
-          </a>
+          </Link>
         ))}
       </motion.div>
-      {React.cloneElement(children, { ...children.props, aclonica, andadaPro })}
-    </Container>
+    </Navbar>
   );
 }
 
-const Container = styled.div`
+const Navbar = styled.div`
   display: flex;
   flex-direction: column;
   .navbar {
@@ -134,6 +132,7 @@ const Container = styled.div`
       color: var(--darkBlue);
       text-decoration: none;
       font-size: 1.5rem;
+      user-select: none;
     }
     .x {
       position: absolute;
