@@ -127,6 +127,7 @@ const Navbar = styled.div`
     width: 30vw;
     height: 38vh;
     padding-top: 5rem;
+    border-radius: 0.6rem;
     a {
       display: block;
       text-align: start;
