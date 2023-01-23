@@ -87,6 +87,7 @@
 }
 body {
   background: #202833;
+  overflow: hidden;
 }
 img {
   width: 100%;
