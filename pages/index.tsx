@@ -43,8 +43,16 @@ export default function Home() {
         </div>
         <div className="content">
           <div className={andadaPro.className}>
-            This is a technical test solution made by Favio Pariente in order to
-            search repositores and users from:
+            This is a technical test solution made by
+            <a
+              style={{ color: "var(--cian)", textDecoration: "none" }}
+              href="https://favio-pariente-portfolio.vercel.app/"
+              target="_blank"
+            >
+              {" "}
+              Favio Pariente
+            </a>{" "}
+            in order to search repositores and users from:
           </div>
           <div className="gitHub">
             <div className="logo">
@@ -78,6 +86,8 @@ const Section = styled.div`
   height: 70vh;
   width: 100%;
   user-select: none;
+  position: relative;
+  z-index: 1;
   .title {
     margin-bottom: 0.8rem;
     user-select: none;

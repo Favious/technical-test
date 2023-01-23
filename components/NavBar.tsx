@@ -81,6 +81,8 @@ const Navbar = styled.div`
   display: flex;
   flex-direction: column;
   user-select: none;
+  position: relative;
+  z-index: 2;
   .navbar {
     display: flex;
     width: 100%;
@@ -169,6 +171,31 @@ const Navbar = styled.div`
         svg {
           font-size: 2.6rem;
           color: var(--cian);
+        }
+      }
+    }
+    .menu-items {
+      height: 28vh;
+      padding-top: 5rem;
+      min-width: 195px;
+      width: 40%;
+      a {
+        display: block;
+        text-align: start;
+        padding: 0.6rem;
+        padding-left: 2rem;
+        color: var(--darkBlue);
+        text-decoration: none;
+        font-size: 1.2rem;
+        user-select: none;
+      }
+      .x {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 1em;
+        svg {
+          font-size: 2.6rem;
         }
       }
     }
