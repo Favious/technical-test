@@ -22,7 +22,11 @@ export default function FindUsersPage() {
 
   function getClick(clickFlag: any) {
     setIsSearchClicked(true);
-    setInputAnimationVariants({});
+    setInputAnimationVariants({
+      animation: {
+        y: -15,
+      },
+    });
   }
 
   return (
