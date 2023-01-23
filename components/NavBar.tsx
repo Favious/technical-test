@@ -5,6 +5,7 @@ import { BiToggleLeft, BiToggleRight, BiMenu, BiX } from "react-icons/bi";
 import { IoMdMoon, IoIosSunny } from "react-icons/io";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const routes = [
   { name: "HOME", route: "/" },
@@ -37,6 +38,7 @@ const menuVariants = {
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <Navbar>
@@ -67,7 +69,7 @@ export default function NavBar() {
         </div>
         {routes.map((route) => (
           <Link href={route.route} className={andadaPro.className}>
-            {route.name}
+            {router.pathname === route.route ? ">" : ""} {route.name}
           </Link>
         ))}
       </motion.div>
@@ -78,6 +80,7 @@ export default function NavBar() {
 const Navbar = styled.div`
   display: flex;
   flex-direction: column;
+  user-select: none;
   .navbar {
     display: flex;
     width: 100%;

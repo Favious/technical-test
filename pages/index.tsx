@@ -5,6 +5,7 @@ import { FaGithub } from "react-icons/fa";
 import { Aclonica } from "@next/font/google";
 import { Andada_Pro } from "@next/font/google";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const aclonica = Aclonica({ weight: "400", subsets: ["latin"] });
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
@@ -54,10 +55,14 @@ export default function Home() {
         </div>
         <div className="buttons-row">
           <div className="element">
-            <button className={andadaPro.className}>FIND USERS</button>
+            <Link href="/find_users">
+              <button className={andadaPro.className}>FIND USERS</button>
+            </Link>
           </div>
           <div className="element">
-            <button className={andadaPro.className}>FIND REPOS</button>
+            <Link href="/find_repos">
+              <button className={andadaPro.className}>FIND REPOS</button>
+            </Link>
           </div>
         </div>
       </Section>
@@ -72,6 +77,7 @@ const Section = styled.div`
   flex-direction: column;
   height: 70vh;
   width: 100%;
+  user-select: none;
   .title {
     margin-bottom: 0.8rem;
     user-select: none;
