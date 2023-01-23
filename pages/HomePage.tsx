@@ -64,6 +64,7 @@ const Section = styled.div`
   width: 100%;
   .title {
     margin-bottom: 0.8rem;
+    user-select: none;
   }
   .title h1 {
     color: var(--cian);
@@ -78,6 +79,7 @@ const Section = styled.div`
     font-size: 2rem;
     width: 58%;
     text-align: center;
+    user-select: none;
 
     .gitHub {
       flex-direction: column;

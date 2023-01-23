@@ -4,6 +4,7 @@ import { Aclonica } from "@next/font/google";
 import { Andada_Pro } from "@next/font/google";
 import { BiToggleLeft, BiToggleRight, BiMenu, BiX } from "react-icons/bi";
 import { IoMdMoon, IoIosSunny } from "react-icons/io";
+import { AnimatePresence, motion } from "framer-motion";
 
 const aclonica = Aclonica({ weight: "400", subsets: ["latin"] });
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
@@ -13,6 +14,27 @@ const routes = [
   { name: "FIND USERS", route: "" },
   { name: "FIND REPOS", route: "" },
 ];
+
+const menuVariants = {
+  open: {
+    scale: 1,
+    x: 0,
+    y: 0,
+    transition: {
+      stiffness: 260,
+      damping: 20,
+    },
+  },
+  closed: {
+    scale: 0,
+    x: "34%",
+    y: "-34%",
+    transition: {
+      stiffness: 260,
+      damping: 20,
+    },
+  },
+};
 
 export default function ContainerComponent({ children }: { children: any }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,7 +47,7 @@ export default function ContainerComponent({ children }: { children: any }) {
             <IoIosSunny />
           </div>
           <div className="toggle">
-            <BiToggleRight />
+            <BiToggleRight onClick={() => setIsMenuOpen(!isMenuOpen)} />
           </div>
           <div className="on">
             <IoMdMoon />
@@ -35,18 +57,21 @@ export default function ContainerComponent({ children }: { children: any }) {
           <BiMenu onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
       </div>
-      {isMenuOpen && (
-        <div className="menu-items">
-          <div className="x">
-            <BiX onClick={() => setIsMenuOpen(!isMenuOpen)} />
-          </div>
-          {routes.map((route) => (
-            <a href="#" className={andadaPro.className}>
-              {route.name}
-            </a>
-          ))}
+      <motion.div
+        className="menu-items"
+        initial="closed"
+        animate={isMenuOpen ? "open" : "closed"}
+        variants={menuVariants}
+      >
+        <div className="x">
+          <BiX onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
-      )}
+        {routes.map((route) => (
+          <a href="#" className={andadaPro.className}>
+            {route.name}
+          </a>
+        ))}
+      </motion.div>
       {React.cloneElement(children, { ...children.props, aclonica, andadaPro })}
     </Container>
   );
@@ -98,7 +123,7 @@ const Container = styled.div`
     position: absolute;
     right: 0;
     background-color: var(--cian);
-    width: 30%;
+    width: 30vw;
     height: 38vh;
     padding-top: 5rem;
     a {
