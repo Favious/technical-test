@@ -67,8 +67,8 @@ export default function NavBar() {
         <div className="x">
           <BiX onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
-        {routes.map((route) => (
-          <Link href={route.route} className={andadaPro.className}>
+        {routes.map((route, index) => (
+          <Link href={route.route} className={andadaPro.className} key={index}>
             {router.pathname === route.route ? ">" : ""} {route.name}
           </Link>
         ))}
