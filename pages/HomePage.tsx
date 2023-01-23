@@ -19,8 +19,10 @@ export default function HomePage({
           search repositores and users from:
         </div>
         <div className="gitHub">
-          <FaGithub />
-          GitHub
+          <div className="logo">
+            <FaGithub />
+          </div>
+          <span className="text">GitHub</span>
         </div>
       </div>
       <div className="buttons-row">
@@ -81,12 +83,50 @@ const Section = styled.div`
         font-size: 1.3rem;
         background-color: transparent;
         color: var(--lightWhite);
-        border-radius: 0.4rem;
+        border-radius: 0.6rem;
         border: 2px solid var(--cian);
         &:hover {
           background-color: var(--cian);
           color: var(--darkBlue);
           cursor: pointer;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 700px) {
+    height: 75vh;
+    gap: 2rem;
+    .title {
+      h1 {
+        font-size: 3.7rem;
+      }
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.3rem;
+      width: 70%;
+      .gitHub {
+        margin-top: 3rem;
+      }
+      .logo {
+        svg {
+          height: 5rem;
+          width: 4rem;
+        }
+      }
+      .text {
+        font-size: 1.5rem !important;
+      }
+    }
+    .buttons-row {
+      margin-top: 0;
+      gap: 1.5rem;
+      flex-direction: column;
+      .element {
+        button {
+          padding: 0.8rem 2.5rem;
+          font-size: 0.9rem;
         }
       }
     }

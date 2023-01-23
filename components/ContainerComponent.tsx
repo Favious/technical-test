@@ -2,14 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Aclonica } from "@next/font/google";
 import { Andada_Pro } from "@next/font/google";
-import {
-  BiSun,
-  BiToggleLeft,
-  BiToggleRight,
-  BiMoon,
-  BiMenu,
-} from "react-icons/bi";
-import { IoMdMoon } from "react-icons/io";
+import { BiToggleLeft, BiToggleRight, BiMenu } from "react-icons/bi";
+import { IoMdMoon, IoIosSunny } from "react-icons/io";
 
 const aclonica = Aclonica({ weight: "400", subsets: ["latin"] });
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
@@ -20,7 +14,7 @@ export default function ContainerComponent({ children }: { children: any }) {
       <div className="navbar">
         <div className="mode-toggle">
           <div className="off">
-            <BiSun />
+            <IoIosSunny />
           </div>
           <div className="toggle">
             <BiToggleRight />
@@ -75,6 +69,31 @@ const Container = styled.div`
       svg {
         font-size: 2rem;
         color: var(--cian);
+      }
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .navbar {
+      padding: 1rem 1.3rem;
+      align-items: center;
+      .mode-toggle {
+        margin-top: 0.6rem;
+        .off {
+          font-size: 1.5rem;
+        }
+        .toggle {
+          margin-top: 0.1rem;
+        }
+        .on {
+          font-size: 1.3rem;
+        }
+      }
+      .menu {
+        padding: 0.2rem;
+        svg {
+          font-size: 2.6rem;
+          color: var(--cian);
+        }
       }
     }
   }
