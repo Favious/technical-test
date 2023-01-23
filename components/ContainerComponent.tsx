@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Aclonica } from "@next/font/google";
 import { Andada_Pro } from "@next/font/google";
-import { BiToggleLeft, BiToggleRight, BiMenu } from "react-icons/bi";
+import { BiToggleLeft, BiToggleRight, BiMenu, BiX } from "react-icons/bi";
 import { IoMdMoon, IoIosSunny } from "react-icons/io";
 
 const aclonica = Aclonica({ weight: "400", subsets: ["latin"] });
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
 
+const routes = [
+  { name: "HOME", route: "" },
+  { name: "FIND USERS", route: "" },
+  { name: "FIND REPOS", route: "" },
+];
+
 export default function ContainerComponent({ children }: { children: any }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <Container>
       <div className="navbar">
@@ -24,9 +32,21 @@ export default function ContainerComponent({ children }: { children: any }) {
           </div>
         </div>
         <div className="menu">
-          <BiMenu />
+          <BiMenu onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
       </div>
+      {isMenuOpen && (
+        <div className="menu-items">
+          <div className="x">
+            <BiX onClick={() => setIsMenuOpen(!isMenuOpen)} />
+          </div>
+          {routes.map((route) => (
+            <a href="#" className={andadaPro.className}>
+              {route.name}
+            </a>
+          ))}
+        </div>
+      )}
       {React.cloneElement(children, { ...children.props, aclonica, andadaPro })}
     </Container>
   );
@@ -69,6 +89,34 @@ const Container = styled.div`
       svg {
         font-size: 2rem;
         color: var(--cian);
+      }
+    }
+  }
+  .menu-items {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    background-color: var(--cian);
+    width: 30%;
+    height: 38vh;
+    padding-top: 5rem;
+    a {
+      display: block;
+      text-align: start;
+      padding: 0.8rem;
+      padding-left: 5rem;
+      color: var(--darkBlue);
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+    .x {
+      position: absolute;
+      top: 1rem;
+      right: 2.8rem;
+      padding: 1em;
+      svg {
+        font-size: 2.5rem;
       }
     }
   }
