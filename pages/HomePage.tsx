@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FaGithub } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function HomePage({
   aclonica,
@@ -11,7 +12,24 @@ export default function HomePage({
   return (
     <Section>
       <div className="title">
-        <h1 className={aclonica.className}>HELLO</h1>
+        <motion.h1
+          className={aclonica.className}
+          whileHover={{ scale: 1.1 }}
+          variants={{
+            animation: {
+              y: [0, -15],
+              transition: {
+                yoyo: Infinity,
+                duration: 2,
+                delay: 1,
+              },
+            },
+          }}
+          initial="initial"
+          animate="animation"
+        >
+          HELLO
+        </motion.h1>
       </div>
       <div className="content">
         <div className={andadaPro.className}>
