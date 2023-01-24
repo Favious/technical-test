@@ -29,21 +29,9 @@ export default function FindUsersPage() {
     },
   });
   useEffect(() => {
-    let completeProfiles: any = [];
-    let requests: any = [];
     axios
-      .get(`https://api.github.com/search/users?q=${searchTerm}&per_page=25`)
-      .then((response) => {
-        response.data.items.map((item: any) => {
-          requests.push(
-            axios.get(`https://api.github.com/users/${item.login}`)
-          );
-        });
-        Promise.all(requests).then((res) => {
-          res.forEach((r: any) => completeProfiles.push(r.data));
-          setSearchResults(completeProfiles);
-        });
-      })
+      .get(`https://api.github.com/search/users?q=${searchTerm}`)
+      .then((response) => setSearchResults(response.data.items))
       .catch((error) => console.error(error));
   }, [searchTerm]);
 

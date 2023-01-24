@@ -30,7 +30,7 @@ const Section = styled.div`
   gap: 0.8rem 2rem;
   align-items: center;
   user-select: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   min-width: 300px;
   max-width: 300px;
   justify-content: space-between;
@@ -42,7 +42,7 @@ const Section = styled.div`
       flex-direction: column;
       margin-left: 2rem;
       .name {
-        color: var(--cian);
+        color: var(--silver);
       }
       .label {
         color: var(--silver);
