@@ -59,7 +59,10 @@ const Search = styled.div`
   @media screen and (max-width: 700px) {
     .border {
       height: 6vh;
-      width: 80vw;
+      min-width: 300px;
+    }
+    .input {
+      font-size: 1.2rem;
     }
   }
 `;

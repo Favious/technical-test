@@ -5,6 +5,7 @@ import { Andada_Pro } from "@next/font/google";
 import { motion } from "framer-motion";
 import SearchBar from "@/components/SearchBar";
 import ResourceCard from "@/components/ResourceCard";
+import { useIsSmall } from "@/hooks/useMediaQuery";
 
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
 
@@ -47,6 +48,7 @@ const mockData = [
 ];
 
 export default function FindUsersPage() {
+  const isSmall = useIsSmall();
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [inputAnimationVariants, setInputAnimationVariants] = useState({
     animation: {
@@ -75,7 +77,7 @@ export default function FindUsersPage() {
         <motion.div
           variants={{
             animation: {
-              y: [0, -30],
+              y: [0, isSmall ? 0 : -60],
               transition: {
                 duration: 0.5,
               },
@@ -95,16 +97,21 @@ export default function FindUsersPage() {
           </motion.h1>
         </motion.div>
         {isSearchClicked && (
-          <div className="results">
-            {mockData.map((element: any, index: any) => (
-              <ResourceCard
-                name={element.name}
-                firstLabel={element.userName}
-                secondLabel={element.location}
-                imageUrl={element.imageUrl}
-                key={index}
-              />
-            ))}
+          <div className="results-container">
+            <div className="label-results">
+              <div className={andadaPro.className}>Results: </div>
+            </div>
+            <div className="results">
+              {mockData.map((element: any, index: any) => (
+                <ResourceCard
+                  name={element.name}
+                  firstLabel={element.userName}
+                  secondLabel={element.location}
+                  imageUrl={element.imageUrl}
+                  key={index}
+                />
+              ))}
+            </div>
           </div>
         )}
       </Section>
@@ -129,10 +136,20 @@ const Section = styled.div`
     font-size: 4rem;
     position: relative;
   }
-  .results {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 1rem 10vw;
+  .results-container {
+    position: relative;
+    .label-results {
+      position: absolute;
+      top: -3.2rem;
+      left: 2rem;
+      color: var(--lightWhite);
+      font-size: 2rem;
+    }
+    .results {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 1rem 10vw;
+    }
   }
 
   @media screen and (max-width: 700px) {
@@ -143,8 +160,15 @@ const Section = styled.div`
         font-size: 2.5rem;
       }
     }
-    .results {
-      grid-template-columns: auto;
+    .results-container {
+      margin-top: 0.4rem;
+      .label-results {
+        top: -2.5rem;
+        font-size: 1.4rem;
+      }
+      .results {
+        grid-template-columns: auto;
+      }
     }
   }
 `;
