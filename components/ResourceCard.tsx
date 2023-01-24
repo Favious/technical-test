@@ -46,6 +46,7 @@ const Section = styled.div`
   img {
     height: 75px;
     width: 75px;
+    border-radius: 0.5rem;
   }
   @media screen and (max-width: 700px) {
     gap: 0.4rem 1rem;

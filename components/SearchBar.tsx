@@ -11,6 +11,7 @@ export default function SearchBar(props: any) {
     if (inputValue !== "") {
       setSearchButtonClicked(true);
       props.sendClickState(searchButtonClicked);
+      props.sendInputValue(inputValue);
     }
   }
 

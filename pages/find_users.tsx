@@ -67,6 +67,7 @@ export default function FindUsersPage() {
   const numberOfElementsPerPage = 5;
   const totalElements = mockData.length;
   const [isSearchClicked, setIsSearchClicked] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [inputAnimationVariants, setInputAnimationVariants] = useState({
     animation: {
@@ -86,6 +87,10 @@ export default function FindUsersPage() {
         y: -15,
       },
     });
+  }
+
+  function getInputValue(value: any) {
+    setSearchTerm(value);
   }
 
   function paginate(pageNumber: number) {
@@ -119,7 +124,10 @@ export default function FindUsersPage() {
             initial="initial"
             animate="animation"
           >
-            <SearchBar sendClickState={getClick} />
+            <SearchBar
+              sendClickState={getClick}
+              sendInputValue={getInputValue}
+            />
           </motion.h1>
         </motion.div>
         {isSearchClicked && (
