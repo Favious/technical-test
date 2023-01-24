@@ -2,12 +2,10 @@ import Head from "next/head";
 import NavBar from "@/components/NavBar";
 import styled from "styled-components";
 import { FaGithub } from "react-icons/fa";
-import { Aclonica } from "@next/font/google";
 import { Andada_Pro } from "@next/font/google";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const aclonica = Aclonica({ weight: "400", subsets: ["latin"] });
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
 
 export default function Home() {
@@ -26,7 +24,7 @@ export default function Home() {
             whileHover={{ scale: 1.1 }}
             variants={{
               animation: {
-                y: [0, -15],
+                y: [30, 15],
                 transition: {
                   yoyo: Infinity,
                   duration: 2,
