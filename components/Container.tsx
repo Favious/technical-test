@@ -49,7 +49,12 @@ export default function Container(props: any) {
     setIsSearchClicked(true);
     setInputAnimationVariants({
       animation: {
-        y: -15,
+        y: [-15, -15],
+        transition: {
+          yoyo: Infinity,
+          duration: 2,
+          delay: 1,
+        },
       },
     });
   }

@@ -68,7 +68,7 @@ export default function NavBar() {
       const initialColorValue = root.style.getPropertyValue(
         "--initial-color-mode"
       );
-      setDarkTheme(initialColorValue === window.localStorage.getItem("theme"));
+      setDarkTheme(initialColorValue !== window.localStorage.getItem("theme"));
     }
   }, []);
   return (
