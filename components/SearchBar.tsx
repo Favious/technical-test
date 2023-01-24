@@ -5,16 +5,24 @@ import { motion } from "framer-motion";
 
 export default function SearchBar(props: any) {
   const [searchButtonClicked, setSearchButtonClicked] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   function handleClick() {
-    setSearchButtonClicked(true);
-    props.sendClickState(searchButtonClicked);
+    if (inputValue !== "") {
+      setSearchButtonClicked(true);
+      props.sendClickState(searchButtonClicked);
+    }
   }
 
   return (
     <Search>
       <div className="border">
-        <input type="text" className="input" placeholder="Type something..." />
+        <input
+          type="text"
+          className="input"
+          placeholder="Type something..."
+          onChange={(e) => setInputValue(e.target.value)}
+        />
         <button className="search" onClick={() => handleClick()}>
           <BiSearchAlt2 />
         </button>
