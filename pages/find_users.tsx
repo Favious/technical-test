@@ -30,7 +30,7 @@ export default function FindUsersPage() {
   });
   useEffect(() => {
     axios
-      .get(`https://api.github.com/search/users?q=${searchTerm}`)
+      .get(`https://api.github.com/search/users?q=${searchTerm}&per_page=25`)
       .then((response) => setSearchResults(response.data.items))
       .catch((error) => console.error(error));
   }, [searchTerm]);

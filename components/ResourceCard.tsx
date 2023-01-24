@@ -40,7 +40,7 @@ const Section = styled.div`
     align-items: center;
     .data {
       flex-direction: column;
-      margin-left: 2rem;
+      margin-left: 1.4rem;
       .name {
         color: var(--silver);
       }
