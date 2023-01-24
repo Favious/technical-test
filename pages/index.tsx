@@ -23,7 +23,6 @@ export default function Home() {
       <Section>
         <div className="title">
           <motion.h1
-            className={aclonica.className}
             whileHover={{ scale: 1.1 }}
             variants={{
               animation: {
@@ -92,6 +91,7 @@ const Section = styled.div`
   .title {
     margin-bottom: 0.8rem;
     user-select: none;
+    font-family: "Aclonica", sans-serif;
   }
   .title h1 {
     color: var(--cian);
