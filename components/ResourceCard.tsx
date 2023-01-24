@@ -11,7 +11,7 @@ export default function ResourceCard(props: any) {
         <img src={`${props.imageUrl})`} />
         <div className={andadaPro.className}>
           <div className="data">
-            <div className="name">{props.name}</div>
+            <a className="name">{props.name}</a>
             <div className="label">{props.firstLabel}</div>
             <div className="label">{props.secondLabel}</div>
           </div>
@@ -43,6 +43,10 @@ const Section = styled.div`
       margin-left: 1.4rem;
       .name {
         color: var(--silver);
+        text-decoration: none;
+        &:hover {
+          color: var(--cian);
+        }
       }
       .label {
         color: var(--silver);
@@ -65,5 +69,11 @@ const Section = styled.div`
     min-width: 280px;
     max-width: 280px;
     gap: 0.4rem 1rem;
+    .profile {
+      .data {
+        .name {
+        }
+      }
+    }
   }
 `;

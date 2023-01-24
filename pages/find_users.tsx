@@ -15,6 +15,7 @@ export default function FindUsersPage() {
   const isSmall = useIsSmall();
   const numberOfElementsPerPage = 5;
   const [isSearchClicked, setIsSearchClicked] = useState(false);
+  const [noResultsFlag, setNoResultsFlag] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,10 +30,18 @@ export default function FindUsersPage() {
     },
   });
   useEffect(() => {
-    axios
-      .get(`https://api.github.com/search/users?q=${searchTerm}&per_page=25`)
-      .then((response) => setSearchResults(response.data.items))
-      .catch((error) => console.error(error));
+    setNoResultsFlag(false);
+    if (searchTerm) {
+      axios
+        .get(`https://api.github.com/search/users?q=${searchTerm}&per_page=25`)
+        .then((response) =>
+          setTimeout(() => {
+            setSearchResults(response.data.items);
+            if (response.data.items.length === 0) setNoResultsFlag(true);
+          }, 200)
+        )
+        .catch((error) => console.error(error));
+    }
   }, [searchTerm]);
 
   function getClick() {
@@ -92,7 +101,9 @@ export default function FindUsersPage() {
         {isSearchClicked && (
           <div className="results-container">
             <div className="label-results">
-              <div className={andadaPro.className}>Results: </div>
+              {searchResults.length > 0 && (
+                <div className={andadaPro.className}>Results: </div>
+              )}
             </div>
             <div className="results">
               {currentElements.map((element: any, index: any) => (
@@ -111,6 +122,15 @@ export default function FindUsersPage() {
               totalElements={totalElements}
               paginate={paginate}
             />
+          </div>
+        )}
+        {noResultsFlag && (
+          <div className="no-results">
+            <div className={andadaPro.className}>
+              Sorry :( no results for <span>"</span>
+              {searchTerm}
+              <span>"</span>
+            </div>
           </div>
         )}
       </Section>
@@ -152,6 +172,15 @@ const Section = styled.div`
       gap: 1rem 10vw;
     }
   }
+  .no-results {
+    position: absolute;
+    margin-top: 10vh;
+    color: var(--lightWhite);
+    font-size: 2.5rem;
+    span {
+      color: var(--cian);
+    }
+  }
 
   @media screen and (max-width: 700px) {
     height: 75vh;
@@ -173,6 +202,10 @@ const Section = styled.div`
         min-height: 440px;
         grid-template-columns: auto;
       }
+    }
+    .no-results {
+      text-align: center;
+      font-size: 1.8rem;
     }
   }
 `;
