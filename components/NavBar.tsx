@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Andada_Pro } from "@next/font/google";
-import { BiToggleLeft, BiToggleRight, BiMenu, BiX } from "react-icons/bi";
+import { BiMenu, BiX } from "react-icons/bi";
 import { IoMdMoon, IoIosSunny } from "react-icons/io";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -39,18 +39,56 @@ const menuVariants = {
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
+  const [darkTheme, setDarkTheme] = useState(
+    typeof window !== "undefined" &&
+      window.localStorage.getItem("theme") === "dark"
+      ? true
+      : false
+  );
 
+  const handleToggle = (event: any) => {
+    setDarkTheme(event.target.checked);
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && darkTheme !== undefined) {
+      if (darkTheme) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        window.localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+        window.localStorage.setItem("theme", "light");
+      }
+    }
+  }, [darkTheme]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const root = window.document.documentElement;
+      const initialColorValue = root.style.getPropertyValue(
+        "--initial-color-mode"
+      );
+      setDarkTheme(initialColorValue === window.localStorage.getItem("theme"));
+    }
+  }, []);
   return (
     <Navbar>
       <div className="navbar">
         <div className="mode-toggle">
-          <div className="off">
+          <div className={!darkTheme ? "on" : "off"}>
             <IoIosSunny />
           </div>
           <div className="toggle">
-            <BiToggleRight />
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={darkTheme}
+                onChange={handleToggle}
+              />
+              <span className="slider"></span>
+            </label>
           </div>
-          <div className="on">
+          <div className={darkTheme ? "on" : "off"}>
             <IoMdMoon />
           </div>
         </div>
@@ -92,6 +130,7 @@ const Navbar = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
+      gap: 0.4rem;
       .off {
         color: var(--silver);
         font-size: 1.8rem;
@@ -102,6 +141,65 @@ const Navbar = styled.div`
         color: var(--cian);
         &:hover {
           cursor: pointer;
+        }
+        .switch {
+          position: relative;
+          display: flex;
+          width: 50px;
+          height: 30px;
+          margin-bottom: 0.8rem;
+        }
+
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: var(--cian);
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
+
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 22px;
+          width: 22px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
+
+        input:checked + .slider {
+          background-color: var(--cian);
+        }
+
+        input:focus + .slider {
+          box-shadow: 0 0 1px #33f321;
+        }
+
+        input:checked + .slider:before {
+          -webkit-transform: translateX(20px);
+          -ms-transform: translateX(20px);
+          transform: translateX(20px);
+        }
+
+        .slider {
+          border-radius: 34px;
+        }
+
+        .slider:before {
+          border-radius: 50%;
         }
       }
       .on {
@@ -146,6 +244,7 @@ const Navbar = styled.div`
       right: 2.8rem;
       padding: 1em;
       svg {
+        color: var(--darkBlue);
         font-size: 2.5rem;
       }
     }
@@ -161,6 +260,15 @@ const Navbar = styled.div`
         }
         .toggle {
           margin-top: 0.1rem;
+          .switch {
+            width: 45px;
+            height: 25px;
+          }
+
+          .slider:before {
+            height: 18px;
+            width: 18px;
+          }
         }
         .on {
           font-size: 1.3rem;

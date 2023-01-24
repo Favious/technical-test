@@ -67,7 +67,7 @@ const Section = styled.nav`
       }
     }
     .current {
-      color: cyan;
+      color: var(--cian);
     }
   }
   @media screen and (max-width: 700px) {
