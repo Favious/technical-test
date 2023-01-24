@@ -68,7 +68,7 @@ export default function NavBar() {
       const initialColorValue = root.style.getPropertyValue(
         "--initial-color-mode"
       );
-      setDarkTheme(initialColorValue !== window.localStorage.getItem("theme"));
+      setDarkTheme(initialColorValue === window.localStorage.getItem("theme"));
     }
   }, []);
   return (
@@ -288,7 +288,7 @@ const Navbar = styled.div`
       }
     }
     .menu-items {
-      height: 28vh;
+      height: 35vh;
       padding-top: 5rem;
       min-width: 195px;
       width: 40%;
