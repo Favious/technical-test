@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import NavBar from "@/components/NavBar";
+import NavBar from "../components/NavBar";
 import styled from "styled-components";
 import { Andada_Pro } from "@next/font/google";
 import { motion } from "framer-motion";
-import SearchBar from "@/components/SearchBar";
-import ResourceCard from "@/components/ResourceCard";
-import Pagination from "@/components/Pagination";
-import { useIsSmall } from "@/hooks/useMediaQuery";
+import SearchBar from "../components/SearchBar";
+import ResourceCard from "../components/ResourceCard";
+import Pagination from "../components/Pagination";
+import { useIsSmall } from "../hooks/useMediaQuery";
 
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
 
