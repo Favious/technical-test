@@ -56,4 +56,10 @@ const Search = styled.div`
     border: none;
     cursor: pointer;
   }
+  @media screen and (max-width: 700px) {
+    .border {
+      height: 6vh;
+      width: 80vw;
+    }
+  }
 `;
