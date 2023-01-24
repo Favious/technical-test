@@ -1,0 +1,40 @@
+:root {
+  --black: #0b0c10;
+  --darkBlue: #f8f8f8;
+  --lightWhite: #202833;
+  --cian: #46a29f;
+  --mintGreen: #46a29f;
+  --silver: #7a7a7a;
+}
+
+[data-theme="dark"] {
+  --black: #0b0c10;
+  --darkBlue: #202833;
+  --lightWhite: #f8f8f8;
+  --cian: #66fef2;
+  --mintGreen: #46a29f;
+  --silver: #c5c6c8;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--darkBlue);
+  overflow: hidden;
+}
+img {
+  width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    padding: 7rem 1rem 0 1rem;
+  }
+  .title h1 {
+    font-size: 2.5rem;
+  }
+}
