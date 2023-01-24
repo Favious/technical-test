@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import NavBar from "@/components/NavBar";
 import styled from "styled-components";
 import { Andada_Pro } from "@next/font/google";
@@ -10,64 +11,12 @@ import { useIsSmall } from "@/hooks/useMediaQuery";
 
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
 
-const mockData = [
-  {
-    name: "George Entenman",
-    userName: "Ge",
-    location: "Chapel Hill, NC",
-    profileLink: "",
-    imageUrl: "https://avatars.githubusercontent.com/u/4415?s=120&v=4",
-  },
-  {
-    name: "George Entenman",
-    userName: "Ge",
-    location: "Chapel Hill, NC",
-    profileLink: "",
-    imageUrl: "https://avatars.githubusercontent.com/u/4415?s=120&v=4",
-  },
-  {
-    name: "George Entenman",
-    userName: "Ge",
-    location: "Chapel Hill, NC",
-    profileLink: "",
-    imageUrl: "https://avatars.githubusercontent.com/u/4415?s=120&v=4",
-  },
-  {
-    name: "George Entenman",
-    userName: "Ge",
-    location: "Chapel Hill, NC",
-    profileLink: "",
-    imageUrl: "https://avatars.githubusercontent.com/u/4415?s=120&v=4",
-  },
-  {
-    name: "George Entenman",
-    userName: "Ge",
-    location: "Chapel Hill, NC",
-    profileLink: "",
-    imageUrl: "https://avatars.githubusercontent.com/u/4415?s=120&v=4",
-  },
-  {
-    name: "George Entenman2",
-    userName: "Ge",
-    location: "Chapel Hill, NC",
-    profileLink: "",
-    imageUrl: "https://avatars.githubusercontent.com/u/4415?s=120&v=4",
-  },
-  {
-    name: "George Entenman2",
-    userName: "Ge",
-    location: "Chapel Hill, NC",
-    profileLink: "",
-    imageUrl: "https://avatars.githubusercontent.com/u/4415?s=120&v=4",
-  },
-];
-
 export default function FindUsersPage() {
   const isSmall = useIsSmall();
   const numberOfElementsPerPage = 5;
-  const totalElements = mockData.length;
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [inputAnimationVariants, setInputAnimationVariants] = useState({
     animation: {
@@ -79,6 +28,12 @@ export default function FindUsersPage() {
       },
     },
   });
+  useEffect(() => {
+    axios
+      .get(`https://api.github.com/search/users?q=${searchTerm}&per_page=25`)
+      .then((response) => setSearchResults(response.data.items))
+      .catch((error) => console.error(error));
+  }, [searchTerm]);
 
   function getClick() {
     setIsSearchClicked(true);
@@ -97,9 +52,13 @@ export default function FindUsersPage() {
     setCurrentPage(pageNumber);
   }
 
+  const totalElements = searchResults.length;
   const indexOfLastElement = currentPage * numberOfElementsPerPage;
   const indexOfFirstElement = indexOfLastElement - numberOfElementsPerPage;
-  let currentElements = mockData.slice(indexOfFirstElement, indexOfLastElement);
+  let currentElements = searchResults.slice(
+    indexOfFirstElement,
+    indexOfLastElement
+  );
 
   return (
     <>
@@ -138,10 +97,11 @@ export default function FindUsersPage() {
             <div className="results">
               {currentElements.map((element: any, index: any) => (
                 <ResourceCard
-                  name={element.name}
+                  name={element.login}
                   firstLabel={element.userName}
                   secondLabel={element.location}
-                  imageUrl={element.imageUrl}
+                  imageUrl={element.avatar_url}
+                  profileLink={element.html_url}
                   key={index}
                 />
               ))}
@@ -176,6 +136,7 @@ const Section = styled.div`
     position: relative;
   }
   .results-container {
+    user-select: none;
     position: relative;
     .label-results {
       position: absolute;

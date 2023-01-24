@@ -7,12 +7,14 @@ const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
 export default function ResourceCard(props: any) {
   return (
     <Section>
-      <img src={`${props.imageUrl})`} />
-      <div className={andadaPro.className}>
-        <div className="data">
-          <div className="name">{props.name}</div>
-          <div className="label">{props.firstLabel}</div>
-          <div className="label">{props.secondLabel}</div>
+      <div className="profile">
+        <img src={`${props.imageUrl})`} />
+        <div className={andadaPro.className}>
+          <div className="data">
+            <div className="name">{props.name}</div>
+            <div className="label">{props.firstLabel}</div>
+            <div className="label">{props.secondLabel}</div>
+          </div>
         </div>
       </div>
       <a className="info" href={props.profileLink} target="_blank">
@@ -29,13 +31,27 @@ const Section = styled.div`
   align-items: center;
   user-select: none;
   font-size: 1.2rem;
-  .data {
-    flex-direction: column;
-    .name {
-      color: var(--cian);
+  min-width: 300px;
+  max-width: 300px;
+  justify-content: space-between;
+  .profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .data {
+      flex-direction: column;
+      margin-left: 2rem;
+      .name {
+        color: var(--cian);
+      }
+      .label {
+        color: var(--silver);
+      }
     }
-    .label {
-      color: var(--silver);
+    img {
+      height: 75px;
+      width: 75px;
+      border-radius: 0.5rem;
     }
   }
   .info {
@@ -43,12 +59,10 @@ const Section = styled.div`
     font-size: 1.7rem;
     cursor: pointer;
   }
-  img {
-    height: 75px;
-    width: 75px;
-    border-radius: 0.5rem;
-  }
+
   @media screen and (max-width: 700px) {
+    min-width: 280px;
+    max-width: 280px;
     gap: 0.4rem 1rem;
   }
 `;

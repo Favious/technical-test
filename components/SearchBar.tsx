@@ -10,8 +10,8 @@ export default function SearchBar(props: any) {
   function handleClick() {
     if (inputValue !== "") {
       setSearchButtonClicked(true);
-      props.sendClickState(searchButtonClicked);
       props.sendInputValue(inputValue);
+      props.sendClickState(searchButtonClicked);
     }
   }
 
