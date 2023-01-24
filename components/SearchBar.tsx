@@ -74,5 +74,10 @@ const Search = styled.div`
     .input {
       font-size: 1.2rem;
     }
+    .search {
+      height: 5.9vh;
+      font-size: 1.5rem;
+      border-radius: 0 0.6rem 0.6rem 0;
+    }
   }
 `;

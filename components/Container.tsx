@@ -82,7 +82,7 @@ export default function Container(props: any) {
         <motion.div
           variants={{
             animation: {
-              y: [0, isSmall ? -60 : -60],
+              y: [0, isSmall ? -45 : -60],
               transition: {
                 duration: 0.5,
               },
@@ -207,14 +207,15 @@ const Section = styled.div`
     }
     .results-container {
       .label-results {
-        top: -2.5rem;
+        top: -2.7rem;
         font-size: 1.4rem;
       }
       .results {
         display: flex;
         flex-direction: column;
-        height: 20rem;
+        height: 18rem;
         grid-template-columns: auto;
+        gap: 0.5rem;
       }
     }
     .no-results {
