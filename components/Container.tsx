@@ -182,6 +182,7 @@ const Section = styled.div`
     .results {
       display: grid;
       min-height: 257px;
+      width: 80%;
       grid-template-columns: auto auto;
       gap: 1rem 10vw;
     }
@@ -197,7 +198,7 @@ const Section = styled.div`
   }
 
   @media screen and (max-width: 700px) {
-    height: 75vh;
+    height: 65vh;
     .title {
       text-align: center;
       h1 {

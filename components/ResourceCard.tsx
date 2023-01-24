@@ -36,8 +36,7 @@ const Section = styled.div`
   align-items: center;
   user-select: none;
   font-size: 1.1rem;
-  min-width: 350px;
-  max-width: 350px;
+  min-width: 300px;
   justify-content: space-between;
   .profile {
     display: flex;

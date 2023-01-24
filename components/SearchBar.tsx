@@ -39,7 +39,7 @@ const Search = styled.div`
     background-color: transparent;
     border: 2px solid var(--cian);
     border-radius: 0.6rem;
-    width: 40vw;
+    width: 500px;
     justify-content: space-around;
     align-items: center;
     height: 8vh;
@@ -69,6 +69,7 @@ const Search = styled.div`
     .border {
       height: 6vh;
       min-width: 300px;
+      max-width: 300px;
     }
     .input {
       font-size: 1.2rem;
