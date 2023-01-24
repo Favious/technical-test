@@ -36,15 +36,15 @@ const menuVariants = {
   },
 };
 
+interface Props {
+  darkTheme: boolean | undefined;
+  handleToggle: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
-  const [darkTheme, setDarkTheme] = useState(
-    typeof window !== "undefined" &&
-      window.localStorage.getItem("theme") === "dark"
-      ? true
-      : false
-  );
+  const [darkTheme, setDarkTheme] = useState<boolean | undefined>(undefined);
 
   const handleToggle = (event: any) => {
     setDarkTheme(event.target.checked);

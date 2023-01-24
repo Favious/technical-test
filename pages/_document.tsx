@@ -58,7 +58,6 @@ function setInitialColorMode() {
     const hasPersistedPreference = typeof persistedPreferenceMode === "string";
 
     if (hasPersistedPreference) {
-      console.log("hola");
       return persistedPreferenceMode;
     }
 
@@ -69,7 +68,7 @@ function setInitialColorMode() {
       return preference.matches ? "dark" : "light";
     }
 
-    return "dark";
+    return "light";
   }
 
   const currentColorMode = getInitialColorMode();
