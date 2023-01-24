@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 
 export default function Pagination(props: any) {
-  const [currentPage, setCurrentPage] = useState(1);
   const pageNumbers = [];
 
   for (
@@ -13,6 +12,10 @@ export default function Pagination(props: any) {
     pageNumbers.push(pageNumber);
   }
 
+  function sendNewCurrentPage(value: number) {
+    props.setCurrentPage(value);
+  }
+
   return (
     <Section>
       <div className="pagination">
@@ -21,12 +24,14 @@ export default function Pagination(props: any) {
             <a
               onClick={() => {
                 props.paginate(number);
-                setCurrentPage(number);
+                sendNewCurrentPage(number);
               }}
-              className={`page-link ${currentPage === number ? "current" : ""}`}
+              className={`page-link ${
+                props.currentPage === number ? "current" : ""
+              }`}
             >
               {number}
-              {currentPage === number && <div className="dot">.</div>}
+              {props.currentPage === number && <div className="dot">.</div>}
             </a>
           </div>
         ))}

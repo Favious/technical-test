@@ -31,6 +31,7 @@ export default function FindUsersPage() {
   });
   useEffect(() => {
     setNoResultsFlag(false);
+    setCurrentPage(1);
     if (searchTerm) {
       axios
         .get(`https://api.github.com/search/users?q=${searchTerm}&per_page=25`)
@@ -121,6 +122,8 @@ export default function FindUsersPage() {
               elementsPerPage={numberOfElementsPerPage}
               totalElements={totalElements}
               paginate={paginate}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
             />
           </div>
         )}
