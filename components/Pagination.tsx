@@ -71,6 +71,6 @@ const Section = styled.nav`
     }
   }
   @media screen and (max-width: 700px) {
-    bottom: -3rem;
+    bottom: -6rem;
   }
 `;
