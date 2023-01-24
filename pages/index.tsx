@@ -97,6 +97,7 @@ const Section = styled.div`
     color: var(--cian);
     font-size: 6rem;
     position: relative;
+    font-weight: 400;
   }
   .content {
     display: flex;
