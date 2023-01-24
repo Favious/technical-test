@@ -29,9 +29,21 @@ export default function FindUsersPage() {
     },
   });
   useEffect(() => {
+    let completeProfiles: any = [];
+    let requests: any = [];
     axios
       .get(`https://api.github.com/search/users?q=${searchTerm}&per_page=25`)
-      .then((response) => setSearchResults(response.data.items))
+      .then((response) => {
+        response.data.items.map((item: any) => {
+          requests.push(
+            axios.get(`https://api.github.com/users/${item.login}`)
+          );
+        });
+        Promise.all(requests).then((res) => {
+          res.forEach((r: any) => completeProfiles.push(r.data));
+          setSearchResults(completeProfiles);
+        });
+      })
       .catch((error) => console.error(error));
   }, [searchTerm]);
 
@@ -98,7 +110,7 @@ export default function FindUsersPage() {
               {currentElements.map((element: any, index: any) => (
                 <ResourceCard
                   name={element.login}
-                  firstLabel={element.userName}
+                  firstLabel={element.name}
                   secondLabel={element.location}
                   imageUrl={element.avatar_url}
                   profileLink={element.html_url}

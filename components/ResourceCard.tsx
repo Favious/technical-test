@@ -46,6 +46,7 @@ const Section = styled.div`
       }
       .label {
         color: var(--silver);
+        font-size: 1rem;
       }
     }
     img {
