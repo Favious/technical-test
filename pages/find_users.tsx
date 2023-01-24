@@ -5,6 +5,7 @@ import { Andada_Pro } from "@next/font/google";
 import { motion } from "framer-motion";
 import SearchBar from "@/components/SearchBar";
 import ResourceCard from "@/components/ResourceCard";
+import Pagination from "@/components/Pagination";
 import { useIsSmall } from "@/hooks/useMediaQuery";
 
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
@@ -45,11 +46,28 @@ const mockData = [
     profileLink: "",
     imageUrl: "https://avatars.githubusercontent.com/u/4415?s=120&v=4",
   },
+  {
+    name: "George Entenman2",
+    userName: "Ge",
+    location: "Chapel Hill, NC",
+    profileLink: "",
+    imageUrl: "https://avatars.githubusercontent.com/u/4415?s=120&v=4",
+  },
+  {
+    name: "George Entenman2",
+    userName: "Ge",
+    location: "Chapel Hill, NC",
+    profileLink: "",
+    imageUrl: "https://avatars.githubusercontent.com/u/4415?s=120&v=4",
+  },
 ];
 
 export default function FindUsersPage() {
   const isSmall = useIsSmall();
+  const numberOfElementsPerPage = 5;
+  const totalElements = mockData.length;
   const [isSearchClicked, setIsSearchClicked] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const [inputAnimationVariants, setInputAnimationVariants] = useState({
     animation: {
       y: [0, -15],
@@ -61,7 +79,7 @@ export default function FindUsersPage() {
     },
   });
 
-  function getClick(clickFlag: any) {
+  function getClick() {
     setIsSearchClicked(true);
     setInputAnimationVariants({
       animation: {
@@ -69,6 +87,14 @@ export default function FindUsersPage() {
       },
     });
   }
+
+  function paginate(pageNumber: number) {
+    setCurrentPage(pageNumber);
+  }
+
+  const indexOfLastElement = currentPage * numberOfElementsPerPage;
+  const indexOfFirstElement = indexOfLastElement - numberOfElementsPerPage;
+  let currentElements = mockData.slice(indexOfFirstElement, indexOfLastElement);
 
   return (
     <>
@@ -102,7 +128,7 @@ export default function FindUsersPage() {
               <div className={andadaPro.className}>Results: </div>
             </div>
             <div className="results">
-              {mockData.map((element: any, index: any) => (
+              {currentElements.map((element: any, index: any) => (
                 <ResourceCard
                   name={element.name}
                   firstLabel={element.userName}
@@ -112,6 +138,11 @@ export default function FindUsersPage() {
                 />
               ))}
             </div>
+            <Pagination
+              elementsPerPage={numberOfElementsPerPage}
+              totalElements={totalElements}
+              paginate={paginate}
+            />
           </div>
         )}
       </Section>
@@ -147,6 +178,7 @@ const Section = styled.div`
     }
     .results {
       display: grid;
+      min-height: 257px;
       grid-template-columns: auto auto;
       gap: 1rem 10vw;
     }
@@ -167,6 +199,9 @@ const Section = styled.div`
         font-size: 1.4rem;
       }
       .results {
+        display: flex;
+        flex-direction: column;
+        min-height: 440px;
         grid-template-columns: auto;
       }
     }
