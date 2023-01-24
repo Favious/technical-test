@@ -213,7 +213,6 @@ const Section = styled.div`
       .results {
         display: flex;
         flex-direction: column;
-        min-height: 440px;
         grid-template-columns: auto;
       }
     }

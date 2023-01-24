@@ -80,6 +80,10 @@ const Section = styled.div`
           font-size: 0.7rem;
         }
       }
+      img {
+        height: 60px;
+        width: 60px;
+      }
     }
   }
 `;
