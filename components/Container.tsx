@@ -136,9 +136,9 @@ export default function Container(props: any) {
         {noResultsFlag && (
           <div className="no-results">
             <div className={andadaPro.className}>
-              Sorry :( no results for <span>"</span>
+              Sorry :( no results for <span>-</span>
               {searchTerm}
-              <span>"</span>
+              <span>-</span>
             </div>
           </div>
         )}
