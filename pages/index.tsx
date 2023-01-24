@@ -48,6 +48,7 @@ export default function Home() {
               style={{ color: "var(--cian)", textDecoration: "none" }}
               href="https://favio-pariente-portfolio.vercel.app/"
               target="_blank"
+              rel="noreferrer noopener"
             >
               {" "}
               Favio Pariente

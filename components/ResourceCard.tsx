@@ -17,7 +17,12 @@ export default function ResourceCard(props: any) {
           </div>
         </div>
       </div>
-      <a className="info" href={props.profileLink} target="_blank">
+      <a
+        className="info"
+        href={props.profileLink}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
         <BsInfoCircleFill />
       </a>
     </Section>
