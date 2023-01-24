@@ -31,8 +31,8 @@ const Section = styled.div`
   align-items: center;
   user-select: none;
   font-size: 1.1rem;
-  min-width: 300px;
-  max-width: 300px;
+  min-width: 350px;
+  max-width: 350px;
   justify-content: space-between;
   .profile {
     display: flex;
@@ -42,15 +42,12 @@ const Section = styled.div`
       flex-direction: column;
       margin-left: 1.4rem;
       .name {
-        color: var(--silver);
         text-decoration: none;
-        &:hover {
-          color: var(--cian);
-        }
+        color: var(--cian);
       }
       .label {
         color: var(--silver);
-        font-size: 1rem;
+        font-size: 0.8rem;
       }
     }
     img {
@@ -72,6 +69,10 @@ const Section = styled.div`
     .profile {
       .data {
         .name {
+        }
+        .label {
+          width: 100px;
+          font-size: 0.7rem;
         }
       }
     }
