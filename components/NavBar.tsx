@@ -36,11 +36,6 @@ const menuVariants = {
   },
 };
 
-interface Props {
-  darkTheme: boolean | undefined;
-  handleToggle: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
@@ -51,7 +46,7 @@ export default function NavBar() {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined" && darkTheme !== undefined) {
+    if (typeof window !== "undefined") {
       if (darkTheme) {
         document.documentElement.setAttribute("data-theme", "dark");
         window.localStorage.setItem("theme", "dark");
@@ -68,9 +63,10 @@ export default function NavBar() {
       const initialColorValue = root.style.getPropertyValue(
         "--initial-color-mode"
       );
-      setDarkTheme(initialColorValue === window.localStorage.getItem("theme"));
+      setDarkTheme(initialColorValue !== window.localStorage.getItem("theme"));
     }
   }, []);
+
   return (
     <Navbar>
       <div className="navbar">
@@ -230,14 +226,14 @@ const Navbar = styled.div`
     right: 0;
     background-color: var(--cian);
     width: 30vw;
-    height: 38vh;
+    height: 300px;
     padding-top: 5rem;
     border-radius: 0.6rem;
     a {
       display: block;
       text-align: start;
       padding: 0.8rem;
-      padding-left: 5rem;
+      padding-left: 3rem;
       color: var(--darkBlue);
       text-decoration: none;
       font-size: 1.5rem;

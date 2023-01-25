@@ -4,7 +4,15 @@ import { BsInfoCircleFill } from "react-icons/bs";
 
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
 
-export default function ResourceCard(props: any) {
+interface ResourceCardProps {
+  name: string; // name of resource
+  firstLabel: string; // first label of resource
+  secondLabel: string; // second label of resource
+  imageUrl: string; // url of resource's image
+  profileLink: string; // link to resource's profile
+}
+
+export default function ResourceCard(props: ResourceCardProps) {
   return (
     <Section>
       <div className="profile">
