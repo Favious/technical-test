@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import NavBar from "../components/NavBar";
 import styled from "styled-components";
 import { Andada_Pro } from "@next/font/google";
 import { motion } from "framer-motion";
 import SearchBar from "../components/SearchBar";
 import ResourceCard from "../components/ResourceCard";
 import Pagination from "../components/Pagination";
+import { PulseLoader } from "react-spinners";
 import { useIsSmall } from "../hooks/useMediaQuery";
 
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
@@ -21,6 +21,7 @@ export default function Container(props: ContainerProps) {
   const numberOfElementsPerPage = 5;
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [noResultsFlag, setNoResultsFlag] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,18 +35,21 @@ export default function Container(props: ContainerProps) {
       },
     },
   });
+
   useEffect(() => {
     setNoResultsFlag(false);
     setCurrentPage(1);
     if (searchTerm) {
+      setLoading(true);
       axios
         .get(`${props.request + searchTerm}&per_page=25`)
-        .then((response) =>
+        .then((response) => {
           setTimeout(() => {
             setSearchResults(response.data.items);
             if (response.data.items.length === 0) setNoResultsFlag(true);
-          }, 200)
-        )
+          }, 200);
+          setLoading(false);
+        })
         .catch((error) => console.error(error));
     }
   }, [searchTerm]);
@@ -142,6 +146,11 @@ export default function Container(props: ContainerProps) {
             />
           </div>
         )}
+        {loading && searchResults.length === 0 && (
+          <div className="spinner">
+            <PulseLoader color="var(--cian)" />
+          </div>
+        )}
         {noResultsFlag && (
           <div className="no-results">
             <div className={andadaPro.className}>
@@ -199,6 +208,9 @@ const Section = styled.div`
     span {
       color: var(--cian);
     }
+  }
+  .spinner {
+    position: absolute;
   }
 
   @media screen and (max-width: 700px) {
