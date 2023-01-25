@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 export default function Pagination(props: any) {
@@ -71,6 +70,24 @@ const Section = styled.nav`
     }
   }
   @media screen and (max-width: 700px) {
-    bottom: -6rem;
+    bottom: -5.5rem;
+    .pagination {
+      gap: 1.5rem;
+      .page-item {
+        display: inline;
+        font-size: 1.5rem;
+        .page-link {
+          cursor: pointer;
+          .dot {
+            position: absolute;
+            left: 3.7rem;
+            font-size: 3rem;
+          }
+        }
+      }
+      .current {
+        color: var(--cian);
+      }
+    }
   }
 `;
