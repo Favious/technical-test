@@ -82,7 +82,6 @@ export default function Container(props: ContainerProps) {
 
   return (
     <>
-      <NavBar />
       <Section>
         <motion.div
           variants={{
