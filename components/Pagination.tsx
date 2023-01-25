@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-export default function Pagination(props: any) {
+interface PaginationProps {
+  totalElements: number;
+  elementsPerPage: number;
+  currentPage: number;
+  paginate: (pageNumber: number) => void;
+  setCurrentPage: (newCurrentPage: number) => void;
+}
+
+export default function Pagination(props: PaginationProps) {
   const pageNumbers = [];
 
   for (

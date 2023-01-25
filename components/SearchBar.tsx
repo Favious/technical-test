@@ -1,9 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { BiSearchAlt2 } from "react-icons/bi";
-import { motion } from "framer-motion";
 
-export default function SearchBar(props: any) {
+interface SearchBarProps {
+  sendClickState: (searchButtonClicked: boolean) => void;
+  sendInputValue: (inputValue: string) => void;
+}
+
+export default function SearchBar(props: SearchBarProps) {
   const [searchButtonClicked, setSearchButtonClicked] = useState(false);
   const [inputValue, setInputValue] = useState("");
 

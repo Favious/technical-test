@@ -11,7 +11,12 @@ import { useIsSmall } from "../hooks/useMediaQuery";
 
 const andadaPro = Andada_Pro({ weight: "400", subsets: ["latin"] });
 
-export default function Container(props: any) {
+interface ContainerProps {
+  request: string;
+  label: string;
+}
+
+export default function Container(props: ContainerProps) {
   const isSmall = useIsSmall();
   const numberOfElementsPerPage = 5;
   const [isSearchClicked, setIsSearchClicked] = useState(false);
@@ -59,7 +64,7 @@ export default function Container(props: any) {
     });
   }
 
-  function getInputValue(value: any) {
+  function getInputValue(value: string) {
     setSearchTerm(value);
   }
 
@@ -112,7 +117,7 @@ export default function Container(props: any) {
               )}
             </div>
             <div className="results">
-              {currentElements.map((element: any, index: any) => (
+              {currentElements.map((element: any, index: number) => (
                 <ResourceCard
                   name={props.label === "USERS" ? element.login : element.name}
                   firstLabel={
