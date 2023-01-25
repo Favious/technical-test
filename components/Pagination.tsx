@@ -87,9 +87,8 @@ const Section = styled.nav`
         .page-link {
           cursor: pointer;
           .dot {
-            position: absolute;
-            left: 3.7rem;
-            font-size: 3rem;
+            bottom: -1rem;
+            font-size: 2.5rem;
           }
         }
       }
